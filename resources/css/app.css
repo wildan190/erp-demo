@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Basic layout helpers for sidebar + content */
+:root {
+    --sidebar-width: 260px;
+}
+
+.app-shell {
+    min-height: 100vh;
+    display: flex;
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: #0f172a; /* slate-900 */
+    color: #e2e8f0; /* slate-200 */
+}
+
+.sidebar a { color: inherit; }
+
+.content {
+    flex: 1;
+    padding: 1.25rem; /* p-5 */
+}
+
+.brand { padding: 1rem; font-weight: 700; }
+
+.nav-link { display:block; padding:0.5rem 1rem; }
+.nav-link:hover { background-color: rgba(255,255,255,0.03); }
+
+.active-link { background-color: rgba(99,102,241,0.12); color: #c7d2fe; }
+

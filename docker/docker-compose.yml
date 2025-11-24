@@ -1,0 +1,44 @@
+services:
+  php:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: erp-demo-php
+    working_dir: /var/www/html
+    volumes:
+      - ../:/var/www/html
+    networks:
+      - erpnet
+
+  nginx:
+    image: nginx:latest
+    container_name: erp-demo-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ../:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+    networks:
+      - erpnet
+
+  mysql:
+    image: mysql:8.0
+    container_name: erp-demo-mysql
+    environment:
+      MYSQL_DATABASE: erp-demo
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - erpnet
+
+networks:
+  erpnet:
+    driver: bridge
+
+volumes:
+  mysql_data:
