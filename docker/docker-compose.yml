@@ -14,7 +14,7 @@ services:
     image: nginx:latest
     container_name: erp-demo-nginx
     ports:
-      - "8080:80"    # VPS akses: http://185.201.8.26:8080
+      - "80:80"    # VPS akses: http://185.201.8.26:8080
     volumes:
       - ../:/var/www/html
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
